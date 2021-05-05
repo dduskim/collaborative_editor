@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import { useEffect } from 'react';
+import { db } from './firebase';
+import CollaborativeEditor from './components/CollaborativeEditor';
 import './App.css';
 
 function App() {
+  useEffect(() => {
+    // fetch test data
+    db.collection('document')
+      .doc('eS0A651oZCTx0GrNv12c')
+      .collection('blocks')
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          console.log(doc.id, doc.data().text);
+        });
+      });
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <CollaborativeEditor />
     </div>
   );
 }
