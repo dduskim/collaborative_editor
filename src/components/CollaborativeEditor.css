@@ -1,7 +1,7 @@
-
 .collaborative-editor {
   display: block;
   background-color: white;
-  height: 500px;
-  border: 3px black;
+  height: 200px;
+  border: solid 1px #eee;
+  border-bottom: none;
 }
